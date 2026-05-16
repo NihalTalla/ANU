@@ -1,0 +1,3 @@
+@echo off
+echo Starting Enhanced Anu Dashboard...
+python anu_dashboard.py

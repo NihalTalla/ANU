@@ -1,0 +1,20 @@
+# Core dependencies
+requests==2.31.0
+pyjokes==0.8.3
+
+# System dependencies
+psutil==5.9.8
+
+# Voice and Speech dependencies
+SpeechRecognition==3.10.0
+pyttsx3==2.90
+pyaudio==0.2.14
+
+# Visualization dependencies
+matplotlib==3.7.1
+
+# Automation dependencies
+pyautogui==0.9.54
+
+# Additional dependencies
+Pillow==10.0.0

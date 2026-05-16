@@ -1,0 +1,47 @@
+{
+  "hi can you hear me": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:11:44.241700",
+    "frequency": 1
+  },
+  "can you generate quotes": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:12:04.540856",
+    "frequency": 1
+  },
+  "brave": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:12:15.520951",
+    "frequency": 1
+  },
+  "open brave": {
+    "response": "Opening brave",
+    "last_used": "2025-05-17T18:12:26.978459",
+    "frequency": 1
+  },
+  "play hindi songs": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:12:40.888231",
+    "frequency": 1
+  },
+  "play hindi songs in youtube": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:12:47.425822",
+    "frequency": 1
+  },
+  "hi hello can you hear me": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:19:14.232339",
+    "frequency": 1
+  },
+  "hi hello can you help me here": {
+    "response": "I can help you with:\n- Opening/closing applications\n- Creating notes\n- Setting timers\n- Basic calculations\n- Telling jokes\n- Checking time and date",
+    "last_used": "2025-05-17T18:25:22.844167",
+    "frequency": 1
+  },
+  "open": {
+    "response": "I couldn't open . Is it installed on your system?",
+    "last_used": "2025-05-18T11:50:53.853134",
+    "frequency": 1
+  }
+}
