@@ -46,37 +46,54 @@ supabase: Client = init_supabase()
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-html,body,[class*="css"]{font-family:'Inter',sans-serif !important;}
+*{font-family:'Inter',sans-serif !important;}
 
-.auth-card{background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid #e94560;border-radius:20px;padding:40px;max-width:480px;margin:60px auto;box-shadow:0 0 60px rgba(233,69,96,0.2);}
-.auth-title{font-size:2.2rem;font-weight:700;background:linear-gradient(90deg,#e94560,#533483);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:4px;}
-.auth-sub{text-align:center;color:#8892b0;font-size:0.95rem;margin-bottom:28px;}
+/* Force dark theme globally */
+.stApp, .stApp>header, .stApp>footer, .main, .main .block-container{background-color:#0a0a15 !important;}
+[data-testid="stHeader"]{background-color:transparent !important;}
+[data-testid="stSidebar"]{background-color:#0d0d1a !important;border-right:1px solid #1a1a2e !important;}
+[data-testid="stSidebar"] *{color:#e6f1ff !important;}
 
-.step-card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:16px;padding:28px;margin:12px 0;}
-.step-num{background:#e94560;color:white;border-radius:50%;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;margin-right:10px;}
-.step-title{color:#e6f1ff;font-size:1.15rem;font-weight:600;vertical-align:middle;}
-.progress-bar{background:#2a2a4a;border-radius:99px;height:6px;margin:16px 0;}
-.progress-fill{background:linear-gradient(90deg,#e94560,#533483);border-radius:99px;height:6px;transition:width 0.5s;}
-
-.anu-header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);border-radius:16px;padding:22px 28px;margin-bottom:20px;border:1px solid #e94560;box-shadow:0 0 30px rgba(233,69,96,0.15);}
-.anu-title{font-size:2.2rem;font-weight:700;background:linear-gradient(90deg,#e94560,#0f3460,#533483);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;}
-.status-dot{display:inline-block;width:10px;height:10px;background:#00ff88;border-radius:50%;margin-right:8px;animation:pulse 2s infinite;box-shadow:0 0 6px #00ff88;}
-@keyframes pulse{0%{opacity:1}50%{opacity:0.4}100%{opacity:1}}
-.metric-card{background:#1a1a2e;border:1px solid #2a2a4a;border-radius:12px;padding:16px;text-align:center;}
-.metric-value{font-size:2rem;font-weight:700;color:#e94560;}
-.metric-label{font-size:0.78rem;color:#8892b0;text-transform:uppercase;letter-spacing:1px;}
-.chat-user{background:linear-gradient(135deg,#0f3460,#1a1a4e);border-radius:16px 16px 4px 16px;padding:12px 16px;margin:8px 0;border-left:3px solid #0f3460;color:#ccd6f6;}
-.chat-anu{background:linear-gradient(135deg,#1a1a2e,#2a1a3e);border-radius:16px 16px 16px 4px;padding:12px 16px;margin:8px 0;border-left:3px solid #e94560;color:#e6f1ff;}
-.voice-box{background:linear-gradient(135deg,#0a1628,#1a0a28);border:2px solid #533483;border-radius:16px;padding:20px;text-align:center;margin:12px 0;}
-.call-box{background:#1a1a0a;border:2px dashed #ffaa00;border-radius:12px;padding:24px;text-align:center;color:#ffaa00;}
-.user-badge{background:#1a1a2e;border:1px solid #e94560;border-radius:99px;padding:6px 14px;color:#e94560;font-size:0.85rem;font-weight:600;display:inline-block;}
-
-.stTextInput>div>div>input{background-color:#1a1a2e !important;color:#ccd6f6 !important;border-color:#2a2a4a !important;border-radius:10px !important;}
-.stTextArea>div>div>textarea{background-color:#1a1a2e !important;color:#ccd6f6 !important;border-color:#2a2a4a !important;}
-.stButton>button{background:linear-gradient(135deg,#e94560,#c62a47) !important;color:white !important;border:none !important;border-radius:10px !important;font-weight:600 !important;}
-[data-testid="stSidebar"]{background-color:#0a0a15 !important;border-right:1px solid #2a2a4a !important;}
-.stSelectbox>div>div{background-color:#1a1a2e !important;color:#ccd6f6 !important;border-color:#2a2a4a !important;}
+/* Inputs */
+input, textarea, select{background-color:#1a1a2e !important;color:#ccd6f6 !important;border-color:#2a2a4a !important;border-radius:10px !important;}
+.stTextInput>div>div>input, .stTextArea>div>div>textarea{background-color:#1a1a2e !important;color:#ccd6f6 !important;border:1px solid #2a2a4a !important;}
+.stSelectbox>div>div>div, .stSelectbox>div>div>select{background-color:#1a1a2e !important;color:#ccd6f6 !important;}
 .stNumberInput>div>div>input{background-color:#1a1a2e !important;color:#ccd6f6 !important;}
+
+/* Buttons */
+.stButton>button{background:linear-gradient(135deg,#e94560,#c62a47) !important;color:white !important;border:none !important;border-radius:10px !important;font-weight:600 !important;transition:all 0.2s !important;}
+.stButton>button:hover{transform:translateY(-1px) !important;box-shadow:0 4px 15px rgba(233,69,96,0.4) !important;}
+.stButton>button:disabled{opacity:0.5 !important;transform:none !important;}
+
+/* Forms */
+[data-testid="stForm"]{background:#12122a !important;border:1px solid #1e1e3a !important;border-radius:16px !important;padding:20px !important;}
+
+/* Expander */
+.streamlit-expanderHeader{background-color:#1a1a2e !important;border:1px solid #2a2a4a !important;border-radius:10px !important;color:#e6f1ff !important;}
+.streamlit-expanderContent{background-color:#12122a !important;border:1px solid #2a2a4a !important;border-top:none !important;border-radius:0 0 10px 10px !important;}
+
+/* Dataframe */
+.dataframe{background-color:#1a1a2e !important;color:#ccd6f6 !important;}
+.dataframe th{background-color:#0f0f20 !important;color:#e6f1ff !important;}
+.dataframe td{background-color:#1a1a2e !important;color:#ccd6f6 !important;}
+
+/* Alerts */
+[data-testid="stAlertContainer"]>div{background-color:#1a1a2e !important;border-color:#2a2a4a !important;color:#ccd6f6 !important;}
+
+/* Progress bar */
+.stProgress>div>div>div{background:linear-gradient(90deg,#e94560,#533483) !important;}
+
+/* Chat input */
+.stChatInput>div{background-color:#1a1a2e !important;border:1px solid #2a2a4a !important;}
+.stChatInput input{background-color:transparent !important;color:#ccd6f6 !important;}
+
+/* Misc overrides */
+p, h1, h2, h3, h4, h5, h6, label, span, div{color:#e6f1ff !important;}
+.stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4{color:#e6f1ff !important;}
+.st-emotion-cache-1kyxreq{background-color:#1a1a2e !important;}
+
+/* Hide theme switcher */
+button[kind="icon"][data-testid="stToolbarAction"]{display:none !important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -234,7 +251,7 @@ def get_gemini(prompt, history):
     try:
         genai.configure(api_key=key)
         model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash",
+            model_name="gemini-2.0-flash",
             system_instruction=(
                 f"You are ANU, a smart personal AI assistant. "
                 f"Be helpful, friendly, witty. "
