@@ -26,8 +26,15 @@ st.set_page_config(
 # ─── Supabase Init ────────────────────────────────────────────────────────────
 @st.cache_resource
 def init_supabase():
-    url = st.secrets.get("SUPABASE_URL", os.getenv("SUPABASE_URL", ""))
-    key = st.secrets.get("SUPABASE_KEY", os.getenv("SUPABASE_KEY", ""))
+    url = ""
+    key = ""
+    try:
+        url = st.secrets.get("SUPABASE_URL", "")
+        key = st.secrets.get("SUPABASE_KEY", "")
+    except Exception:
+        pass
+    url = url or os.getenv("SUPABASE_URL", "")
+    key = key or os.getenv("SUPABASE_KEY", "")
     if not url or not key:
         st.error("⚠️ Supabase credentials not configured. Check secrets.toml or environment variables.")
         st.stop()
