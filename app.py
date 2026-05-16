@@ -108,13 +108,7 @@ def signup_user(email: str, password: str, full_name: str):
             "options": {"data": {"full_name": full_name.strip()}},
         })
         if res.user:
-            supabase.table("user_profiles").insert({
-                "user_id": res.user.id,
-                "email": email.strip().lower(),
-                "full_name": full_name.strip(),
-                "onboarding_done": False,
-            }).execute()
-            return True, "Account created! Please check your email to confirm."
+            return True, "Account created! You can now sign in."
         return False, "Signup failed. Try again."
     except Exception as e:
         err = str(e)
