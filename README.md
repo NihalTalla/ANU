@@ -1,92 +1,74 @@
-# Anu Dashboard - Enhanced Personal Assistant
+# ANU - Personal AI Assistant
 
-Anu Dashboard is a comprehensive desktop assistant with system monitoring capabilities and a rich set of features.
+ANU has two runtimes:
 
-## Features
+- `app.py` for the deployable Streamlit web app
+- `anu_dashboard.py` for the original Windows desktop assistant
 
-### Core Features
-- Voice recognition and text-to-speech capabilities
-- Interactive dashboard with system monitoring
-- Real-time CPU, memory, and disk usage charts
-- Process monitoring
+## Web app
 
-### Assistant Features
-- Open applications and websites
-- Tell time and date
-- Answer questions
-- Enhanced screenshot capabilities with options
-- System information display
-- Web search with multiple search engines
-- Code generation for multiple programming languages
-- Note-taking functionality
-- Joke telling with multiple categories
-- Weather information lookup
-- Simple calculator functionality
+The deployable version includes:
 
-## Requirements
+- Gemini chat
+- notes with export
+- calculator
+- weather lookup
+- system monitor
+- code generator templates
+- jokes
+- SMTP email sending and AI drafting
+- optional browser microphone transcription
+- optional Twilio call support
+- personal links loaded from secrets/environment variables
 
-- Python 3.8 or higher
-- Windows 10 or higher
-- Microphone for voice input
-- Speakers for voice output
-- Required Python packages (see requirements.txt)
+### Run locally
 
-## Installation
-
-1. Install required packages:
-   ```
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-Run the assistant:
-```
-python anu_dashboard.py
+```bash
+pip install -r requirements.txt
+streamlit run app.py
 ```
 
-Or use the batch file:
-```
-run_enhanced_dashboard.bat
-```
+### Streamlit Cloud secrets
 
-## Voice/Text Commands
+Set these secrets in your app settings:
 
-- "Hello" - Greet the assistant
-- "What time is it" - Get the current time
-- "What date is it" - Get the current date
-- "Open [application]" - Open an application
-- "Take a screenshot" - Capture the screen with options
-- "System info" - Get system information
-- "Search for [query]" - Perform a web search
-- "Generate code" - Open code generation dialog
-- "Tell me a joke" - Get a random joke
-- "Save a note" - Create and save notes
-- "Weather in [location]" - Get weather information
-- "Calculate [expression]" - Perform calculations
-- "Help" - Show available commands
-- "Exit" or "Goodbye" - Close the assistant
+- `GEMINI_API_KEY`
+- `SMTP_EMAIL`
+- `SMTP_PASSWORD`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `WEATHER_API_KEY`
+- `LINK_INSTAGRAM`
+- `LINK_LINKEDIN`
+- `LINK_GITHUB`
+- `LINK_YOUTUBE`
+- `LINK_TWITTER`
+- `LINK_CUSTOM_1_LABEL`
+- `LINK_CUSTOM_1_URL`
+- `LINK_CUSTOM_2_LABEL`
+- `LINK_CUSTOM_2_URL`
+- `TWILIO_ACCOUNT_SID`
+- `TWILIO_AUTH_TOKEN`
+- `TWILIO_PHONE_NUMBER`
 
-## Quick Actions
+## Desktop app
 
-The dashboard provides quick access buttons for common actions:
-- Web Search
-- Generate Code
-- Take Screenshot
-- System Info
-- Tell Joke
-- Save Notes
+The local Windows assistant remains in `anu_dashboard.py`.
+Use `requirements-desktop.txt` for that version.
 
-## Project Structure
+## Repository layout
 
-```
+```text
 anu/
-├── anu_dashboard.py       # Main dashboard application
-├── data/                  # Database storage
-├── logs/                  # Log files
-└── requirements.txt       # Project dependencies
+├── app.py                  # Streamlit web app
+├── anu_dashboard.py        # Windows desktop assistant
+├── requirements.txt        # Web app dependencies
+├── requirements-desktop.txt# Desktop assistant dependencies
+├── data/                   # Local notes/contacts storage
+└── logs/                   # Log files
 ```
 
-## License
+## Notes
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+- Secrets are not hardcoded in `app.py`.
+- `data/notes.json` and `data/contacts.json` are created automatically.
