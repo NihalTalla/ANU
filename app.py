@@ -14,7 +14,7 @@ from email.mime.multipart import MIMEMultipart
 import google.generativeai as genai
 from supabase import create_client, Client
 
-st.set_page_config(page_title="ANU", page_icon="🤖", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="ANU", page_icon="🤖", layout="wide", initial_sidebar_state="expanded")
 
 # ─── Supabase ─────────────────────────────────────────────────────────────────
 @st.cache_resource
@@ -425,6 +425,16 @@ def page_app():
         if st.button("🚪 Sign Out",use_container_width=True): logout_user();st.rerun()
 
     st.markdown(f'<div class="anu-header"><h1 class="anu-title">🤖 ANU</h1></div>',unsafe_allow_html=True)
+
+    # Mode switcher bar - always visible in main content
+    tab=st.session_state.active_tab
+    c1,c2,c3=st.columns(3)
+    with c1:
+        if st.button("💬 Chat",key="mode_chat",use_container_width=True,type="primary" if tab=="Chat" else "secondary"): st.session_state.active_tab="Chat";st.rerun()
+    with c2:
+        if st.button("🎤 Voice",key="mode_voice",use_container_width=True,type="primary" if tab=="Voice" else "secondary"): st.session_state.active_tab="Voice";st.rerun()
+    with c3:
+        if st.button("⚙️ Settings",key="mode_settings",use_container_width=True,type="primary" if tab=="Settings" else "secondary"): st.session_state.active_tab="Settings";st.rerun()
 
     tab=st.session_state.active_tab
 
