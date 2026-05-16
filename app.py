@@ -372,14 +372,20 @@ def page_login():
         st.markdown('<div class="auth-title">Welcome Back</div>', unsafe_allow_html=True)
         st.markdown('<div class="auth-sub">Sign in to your ANU account</div>', unsafe_allow_html=True)
 
-        email = st.text_input("📧 Email", placeholder="you@example.com", key="login_email")
-        password = st.text_input("🔒 Password", type="password", placeholder="Your password", key="login_pw")
+        with st.form("login_form", clear_on_submit=False):
+            email = st.text_input("📧 Email", placeholder="you@example.com", key="login_email")
+            password = st.text_input("🔒 Password", type="password", placeholder="Your password", key="login_pw")
+            submitted = st.form_submit_button("Sign In →", use_container_width=True)
 
-        if st.button("Sign In →", use_container_width=True):
-            if not email or not password:
-                st.error("Please fill in all fields.")
+        if submitted:
+            em = email.strip() if email else ""
+            pw = password.strip() if password else ""
+            if not em:
+                st.error("Please enter your email.")
+            elif not pw:
+                st.error("Please enter your password.")
             else:
-                user = login_user(email, password)
+                user = login_user(em, pw)
                 if user:
                     load_user_session(user)
                     st.rerun()
@@ -388,7 +394,7 @@ def page_login():
 
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown('<div style="text-align:center;color:#8892b0;font-size:0.9rem;">Don\'t have an account?</div>', unsafe_allow_html=True)
-        if st.button("Create Account", use_container_width=True):
+        if st.button("Create Account", use_container_width=True, key="login_to_signup"):
             st.session_state.auth_page = "signup"
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
@@ -411,29 +417,43 @@ def page_signup():
         st.markdown('<div class="auth-title">Create Account</div>', unsafe_allow_html=True)
         st.markdown('<div class="auth-sub">Set up your own ANU in seconds</div>', unsafe_allow_html=True)
 
-        full_name = st.text_input("👤 Full Name", placeholder="Your Name", key="su_name")
-        email = st.text_input("📧 Email", placeholder="you@example.com", key="su_email")
-        password = st.text_input("🔒 Password", type="password", placeholder="Min 6 characters", key="su_pw")
-        confirm = st.text_input("🔒 Confirm Password", type="password", placeholder="Repeat password", key="su_cpw")
+        with st.form("signup_form", clear_on_submit=False):
+            full_name = st.text_input("👤 Full Name", placeholder="Your Name", key="su_name")
+            email = st.text_input("📧 Email", placeholder="you@example.com", key="su_email")
+            password = st.text_input("🔒 Password", type="password", placeholder="Min 6 characters", key="su_pw")
+            confirm = st.text_input("🔒 Confirm Password", type="password", placeholder="Repeat password", key="su_cpw")
 
-        if st.button("Create My ANU →", use_container_width=True):
-            if not all([full_name, email, password, confirm]):
-                st.error("Please fill in all fields.")
-            elif password != confirm:
+            submitted = st.form_submit_button("Create My ANU →", use_container_width=True)
+
+        if submitted:
+            fn = full_name.strip() if full_name else ""
+            em = email.strip() if email else ""
+            pw = password.strip() if password else ""
+            cf = confirm.strip() if confirm else ""
+
+            if not fn:
+                st.error("Please enter your full name.")
+            elif not em:
+                st.error("Please enter your email.")
+            elif not pw:
+                st.error("Please enter a password.")
+            elif not cf:
+                st.error("Please confirm your password.")
+            elif pw != cf:
                 st.error("Passwords don't match.")
-            elif len(password) < 6:
+            elif len(pw) < 6:
                 st.error("Password must be at least 6 characters.")
             else:
-                ok, msg = signup_user(email, password, full_name)
+                ok, msg = signup_user(em, pw, fn)
                 if ok:
                     st.success(msg)
-                    st.info("Please confirm your email, then sign in.")
+                    st.info("You can now sign in!")
                 else:
                     st.error(f"❌ {msg}")
 
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown('<div style="text-align:center;color:#8892b0;font-size:0.9rem;">Already have an account?</div>', unsafe_allow_html=True)
-        if st.button("Sign In", use_container_width=True):
+        if st.button("Sign In", use_container_width=True, key="signup_to_login"):
             st.session_state.auth_page = "login"
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
